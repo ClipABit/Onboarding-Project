@@ -2,3 +2,4 @@ whisper
 pytubefix
 opencv-python
 ffmpeg-python
+pytest
