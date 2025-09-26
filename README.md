@@ -3,23 +3,24 @@ Welcome to the ClipABit team!
 
 As part of your onboarding, we want to make sure you are familiar with the software development lifecycle and caught up on the basics of building software in a team. This includes working with Git, writing Python code, testing, and submitting a PR. By the end of this task, you should be refreshed/taught all foundational software skills you will need to be a contributing member to the team.
 
-**TODO: Instructions telling them to make a branch from git**
-
 ## Overview
 The first step in our search engine's pipeline is processing videos. To do that we need to extract indivdual frames and audio transcriptions from our clips. You will be creating a slightly modified version of that. The goal is to open a video file, extract frames at a fixed interval, create an audio transcription of the entire clip and then save it to an output directory.
 
 ## Workspace Setup
-Before beginning, please make a new branch from `main` for you to work on.
-1. Clone the repository onto your local computer
-2. Open a new terminal and create a new branch using  
+The first thing you need to do is clone the repository. Ensure that you have Python and Git installed on your computer. On your computer, please run the following command:
+```bash
+git clone https://github.com/ClipABit/Onboarding-Project.git
+```
+Next, open the project, and before doing anything else, please make a new branch from `main` for you to work on.
+1. Open a new terminal and create a new branch using  
     ```bash
-    git checkout -b "FirstName_LastName_Onboarding"
+    git checkout -b "FirstName_Onboarding"
     ```
-    - Replace `FirstName` and `LastName` appropriately
-3. As you work through this exercise, please make sure you push and commit your changes to save your work. Everything moving forward should be done in your branch.
+    - Replace `FirstName` appropriately
+2. As you work through this exercise, please make sure you push and commit your changes to save your work. Everything moving forward should be done in your branch.
 
 ## Environment Setup
-Before you can do any video processing, you need to setup your environment and download the video to your project. 
+Before you can do any video processing, you need to set up your environment and download the video to your project. 
 
 1. Check your Python installation and version:
     #### MacOS/Linux
