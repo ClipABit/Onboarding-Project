@@ -15,7 +15,37 @@ def extract_frames(video_path: str, output_folder: str, interval: int):
         None
     """
     # Your code starts here...
-    pass
+
+    if not os.path.exists(video_path):
+        print(f"Error: Video file not found at '{video_path}'")
+        return
+
+    os.makedirs(output_folder, exist_ok=True);
+
+    cap = cv2.VideoCapture(video_path)
+
+    frame_num = 0;
+
+    if not cap.isOpened():
+        print(f"Error: Failed to open video file at '{video_path}'. Check if the video path is correct and if the file format/codec is supported by OpenCV.")
+        return
+
+    while cap.isOpened():
+        ret, frame = cap.read()
+        
+        if not ret:
+            break
+        
+        video_time_ms = cap.get(cv2.CAP_PROP_POS_MSEC);
+
+        if (video_time_ms%(interval*1000) == 0):
+            file_name = "peter_griffin_frame_number_" + str(frame_num) + ".png"
+            FULL_FILE_PATH = os.path.join(output_folder, file_name)
+            cv2.imwrite(FULL_FILE_PATH, frame)
+
+        frame_num += 1
+
+    cap.release()
 
 
 def extract_audio(video_path: str, output_path: str):
@@ -30,7 +60,7 @@ def extract_audio(video_path: str, output_path: str):
         None
     """
     # Your code starts here...
-    pass
+    ffmpeg.input(video_path).output(output_path).overwrite_output().run()
 
 
 # ------------- DO NOT MODIFY BELOW -------------
