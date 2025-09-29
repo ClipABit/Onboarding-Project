@@ -15,6 +15,26 @@ def extract_frames(video_path: str, output_folder: str, interval: int):
         None
     """
     # Your code starts here...
+
+    # load video
+    video = cv2.VideoCapture(video_path)
+
+    # get fps and total # of frames
+    fps = video.get(cv2.CAP_PROP_FPS)
+    total_frames = video.get(cv2.CAP_PROP_FRAME_COUNT)
+    
+    # create folder to save the frames if not exist
+    os.makedirs(output_folder, exist_ok=True)
+
+    count, success = 0, True
+    while success:
+        success, image = video.read()   # read a frame
+        if (count % (fps * interval) == 0):    # save the frame once every interval seconds
+            cv2.imwrite(f"{output_folder}/frame{count}.jpg", image) 
+        count += 1
+
+    video.release()
+
     pass
 
 
@@ -30,6 +50,18 @@ def extract_audio(video_path: str, output_path: str):
         None
     """
     # Your code starts here...
+
+    # create directory to save the audio if not exist
+    os.makedirs(os.path.dirname(output_path), exist_ok=True)
+
+
+    (
+        ffmpeg
+        .input(video_path)
+        .output(output_path, format='wav')
+        .run()
+    )
+
     pass
 
 
