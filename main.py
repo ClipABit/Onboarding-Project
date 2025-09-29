@@ -69,13 +69,13 @@ def extract_audio(video_path: str, output_path: str):
         os.makedirs(output_dir, exist_ok=True)
 
     try:
-        #Defines an input video file
+        #Set up ffmpeg to read input file
         stream = ffmpeg.input(video_path)
 
-        #Directing the stream to the output path in the form of WAV file
+        #Extracted audio stream as a WAV file
         stream = ffmpeg.output(stream, output_path, acodec='pcm_s16le')
 
-        #Executes ffmpeg commadn to extract audio
+        #Run ffmpeg command to perform extraction
         ffmpeg.run(stream, overwrite_output=True)
         print(f"Extracted audio to '{output_path}'.")
     
