@@ -62,7 +62,45 @@ Before you can do any video processing, you need to set up your environment and 
     ```bash
     pip install -r requirements.txt
     ```
+Note : Why just downloading the package won't work:
 
+  ffmpeg-python is a Python wrapper library that builds FFmpeg commands in    
+  Python. FFmpeg itself is written in C/C++ - the Python library just
+  constructs commands and asks the FFmpeg installed on your machine to run    
+  them.
+
+  For example, this Python code:
+  ffmpeg.input("video.mp4").output("audio.mp3", vn=True).run()
+
+  Simply constructs and runs this shell command:
+  ffmpeg -i video.mp4 -vn audio.mp3
+
+  Flow:
+  Python Code → ffmpeg-python library → System FFmpeg executable
+                                                ↓
+                                 ❌ NOT included in pip install
+                                 ✅ Must install separately
+                                 
+  So you need to install ffmpeg on your system to run it as well , 
+  Installation instructions:
+
+  Windows:
+  # Using chocolatey
+  choco install ffmpeg
+
+  # Or using winget
+  winget install ffmpeg
+
+  Mac:
+  brew install ffmpeg
+
+  Linux:
+  sudo apt install ffmpeg
+
+  Verify installation:
+  ffmpeg -version
+
+  If it prints version info, you're good to go.
 6. Download the sample footage by running
     ```bash
     python download_video.py
